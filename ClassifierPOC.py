@@ -3,6 +3,7 @@ import pandas as pd
 import nltk.util
 from nltk.util import ngrams as ngr
 import re
+import matplotlib.pyplot as plt
 
 #Data import and split:
 raw_data=pd.read_csv('COS.csv')
@@ -31,21 +32,37 @@ def bigrams_and_singles_dict_creator(dataframe,column_label):
 a,b=bigrams_and_singles_dict_creator(viable_data,'FIT ELEMENTS')
 c,d=bigrams_and_singles_dict_creator(viable_data,'DEXTERITY ELEMENTS')
 e,f=bigrams_and_singles_dict_creator(viable_data,'SENSORY ELEMENTS')
+n,o=bigrams_and_singles_dict_creator(viable_data,'PRODUCT')
+
 h,i=bigrams_and_singles_dict_creator(not_viable_data,'FIT ELEMENTS')
 j,k=bigrams_and_singles_dict_creator(not_viable_data,'DEXTERITY ELEMENTS')
 l,m=bigrams_and_singles_dict_creator(not_viable_data,'SENSORY ELEMENTS')
+p,q=bigrams_and_singles_dict_creator(not_viable_data,'PRODUCT')
 
 ###Find words that exist only in one fit dictionaries
-a=set(a)-set(h)
-b=set(b)-set(i)
-c=set(c)-set(j)
-d=set(d)-set(k)
-e=set(e)-set(l)
-f=set(f)-set(m)
-h=set(h)-set(a)
-i=set(i)-set(b)
-j=set(j)-set(c)
-k=set(k)-set(d)
-l=set(l)-set(e)
-m=set(m)-set(f)
+aa=set(a)-set(h)
+bb=set(b)-set(i)
+cc=set(c)-set(j)
+dd=set(d)-set(k)
+ee=set(e)-set(l)
+ff=set(f)-set(m)
+hh=set(h)-set(a)
+ii=set(i)-set(b)
+jj=set(j)-set(c)
+kk=set(k)-set(d)
+ll=set(l)-set(e)
+mm=set(m)-set(f)
+nn=set(n)-set(p)
+oo=set(o)-set(q)
+pp=set(p)-set(n)
+qq=set(q)-set(o)
+
+bbb=b.copy()
+for ind in bbb:
+  if ind not in bb:
+    b.pop(ind)
+plt.bar(list(b.keys()), b.values())
+plt.show()
+
+#TODO:
 print('hi')
